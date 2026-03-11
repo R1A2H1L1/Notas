@@ -1,0 +1,387 @@
+/* ─────────────────────────────────────
+   VARIABLES & RESET
+───────────────────────────────────── */
+:root {
+    --bg:        #0f0e11;
+    --surface:   #18171c;
+    --border:    #2e2c36;
+    --accent:    #d4a843;
+    --accent-soft: rgba(212, 168, 67, 0.12);
+    --text:      #e8e6f0;
+    --text-muted:#7b7892;
+    --danger:    #e05a5a;
+    --success:   #5abf82;
+    --radius:    14px;
+    --shadow:    0 8px 40px rgba(0,0,0,0.45);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ─── Background grid ─── */
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(212,168,67,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,168,67,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─────────────────────────────────────
+   HEADER
+───────────────────────────────────── */
+.header {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(212,168,67,0.07) 0%, transparent 100%);
+}
+
+.header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo-icon {
+    color: var(--accent);
+    font-size: 1.4rem;
+    animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+}
+
+.header-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────
+   MAIN LAYOUT
+───────────────────────────────────── */
+.main {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 2.5rem auto;
+    padding: 0 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* ─────────────────────────────────────
+   FORM CARD
+───────────────────────────────────── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.card-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.4rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+    outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* ─── Button ─── */
+button {
+    background: var(--accent);
+    color: #0f0e11;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(212,168,67,0.2);
+}
+
+button:hover {
+    background: #e0b94d;
+    box-shadow: 0 6px 20px rgba(212,168,67,0.35);
+}
+
+button:active { transform: scale(0.97); }
+
+.btn-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* ─────────────────────────────────────
+   MENSAJE
+───────────────────────────────────── */
+.mensaje {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 400;
+    transition: opacity 0.4s;
+}
+
+.mensaje.success {
+    background: rgba(90,191,130,0.15);
+    border: 1px solid rgba(90,191,130,0.3);
+    color: var(--success);
+}
+
+.mensaje.error {
+    background: rgba(224,90,90,0.15);
+    border: 1px solid rgba(224,90,90,0.3);
+    color: var(--danger);
+}
+
+.mensaje.hidden { display: none; }
+
+/* ─────────────────────────────────────
+   SECTION HEADER
+───────────────────────────────────── */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text);
+}
+
+.contador {
+    background: var(--accent-soft);
+    border: 1px solid rgba(212,168,67,0.25);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.15rem 0.65rem;
+    min-width: 28px;
+    text-align: center;
+}
+
+/* ─────────────────────────────────────
+   LISTA DE NOTAS
+───────────────────────────────────── */
+.lista-notas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+}
+
+/* ─── Empty state ─── */
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 3.5rem 1rem;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+    opacity: 0.3;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.empty-state p {
+    font-size: 0.95rem;
+}
+
+/* ─── Nota card ─── */
+.nota-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.nota-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0.5;
+}
+
+.nota-card:hover {
+    border-color: rgba(212,168,67,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.nota-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.nota-contenido {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.nota-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+}
+
+.nota-fecha {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.btn-eliminar {
+    background: transparent;
+    border: 1px solid rgba(224,90,90,0.25);
+    border-radius: 6px;
+    color: var(--danger);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    cursor: pointer;
+    box-shadow: none;
+    font-weight: 400;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-eliminar:hover {
+    background: rgba(224,90,90,0.12);
+    border-color: var(--danger);
+    box-shadow: none;
+}
+
+/* ─────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────── */
+@media (max-width: 600px) {
+    .main { padding: 0 1rem 3rem; }
+    .header-inner { flex-direction: column; gap: 0.3rem; }
+    .form-footer { flex-direction: column; align-items: flex-start; }
+}

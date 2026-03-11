@@ -1,0 +1,5 @@
+com\notas\app\controller\NotaController.class
+com\notas\app\entity\Nota.class
+com\notas\app\repository\NotaRepository.class
+com\notas\app\Application.class
+com\notas\app\service\NotaService.class

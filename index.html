@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Notas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <h1>Mis Notas</h1>
+            </div>
+            <span class="header-sub">Tu espacio de ideas</span>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <!-- Formulario nueva nota -->
+        <section class="card form-card">
+            <div class="card-label">Nueva nota</div>
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" placeholder="Dale un nombre a tu idea…" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="contenido">Contenido</label>
+                <textarea id="contenido" rows="5" placeholder="Escribe aquí tu nota…"></textarea>
+            </div>
+            <div class="form-footer">
+                <div id="mensaje" class="mensaje hidden"></div>
+                <button id="btnGuardar" onclick="guardarNota()">
+                    <span class="btn-icon">+</span> Guardar nota
+                </button>
+            </div>
+        </section>
+
+        <!-- Lista de notas -->
+        <section class="notas-section">
+            <div class="section-header">
+                <h2>Notas guardadas</h2>
+                <span id="contador" class="contador">0</span>
+            </div>
+            <div id="listaNotas" class="lista-notas">
+                <div class="empty-state">
+                    <span class="empty-icon">◎</span>
+                    <p>Aún no hay notas. ¡Crea la primera!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
