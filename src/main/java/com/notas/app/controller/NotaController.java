@@ -1,5 +1,6 @@
 package com.notas.app.controller;
 
+import com.notas.app.dto.NotaRequest;
 import com.notas.app.entity.Nota;
 import com.notas.app.service.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class NotaController {
      * POST /notas → Crear una nueva nota
      */
     @PostMapping
-    public ResponseEntity<Nota> crearNota(@RequestBody Nota nota) {
+    public ResponseEntity<Nota> crearNota(@RequestBody NotaRequest notaRequest) {
+        Nota nota = new Nota(notaRequest.getTitulo(), notaRequest.getContenido());
         Nota notaGuardada = notaService.guardarNota(nota);
         return ResponseEntity.status(HttpStatus.CREATED).body(notaGuardada);
     }

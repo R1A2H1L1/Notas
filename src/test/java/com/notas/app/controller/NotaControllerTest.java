@@ -1,6 +1,7 @@
 package com.notas.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.notas.app.dto.NotaRequest;
 import com.notas.app.entity.Nota;
 import com.notas.app.service.NotaService;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,12 +55,12 @@ class NotaControllerTest {
     @Test
     @DisplayName("POST /notas - debe crear una nota y retornar 201")
     void crearNota_debeRetornar201ConNotaCreada() throws Exception {
-        Nota notaNueva = new Nota("Título de prueba", "Contenido de prueba");
+        NotaRequest notaRequest = new NotaRequest("Título de prueba", "Contenido de prueba");
         when(notaService.guardarNota(any(Nota.class))).thenReturn(notaEjemplo);
 
         mockMvc.perform(post("/notas")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(notaNueva)))
+                .content(objectMapper.writeValueAsString(notaRequest)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.titulo").value("Título de prueba"))
