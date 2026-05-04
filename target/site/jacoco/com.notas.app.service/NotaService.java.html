@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">notas-app</a> &gt; <a href="index.source.html" class="el_package">com.notas.app.service</a> &gt; <span class="el_source">NotaService.java</span></div><h1>NotaService.java</h1><pre class="source lang-java linenums">package com.notas.app.service;
+
+import com.notas.app.entity.Nota;
+import com.notas.app.repository.NotaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class NotaService {
+
+    private final NotaRepository notaRepository;
+
+    @Autowired
+<span class="fc" id="L17">    public NotaService(NotaRepository notaRepository) {</span>
+<span class="fc" id="L18">        this.notaRepository = notaRepository;</span>
+<span class="fc" id="L19">    }</span>
+
+    /**
+     * Guarda una nueva nota en la base de datos.
+     *
+     * @param nota la nota a guardar
+     * @return la nota guardada con su id asignado
+     */
+    public Nota guardarNota(Nota nota) {
+<span class="fc" id="L28">        return notaRepository.save(nota);</span>
+    }
+
+    /**
+     * Obtiene todas las notas almacenadas.
+     *
+     * @return lista de todas las notas
+     */
+    public List&lt;Nota&gt; obtenerTodasLasNotas() {
+<span class="fc" id="L37">        return notaRepository.findAll();</span>
+    }
+
+    /**
+     * Obtiene una nota por su id.
+     *
+     * @param id el identificador de la nota
+     * @return un Optional con la nota si existe, vacío si no
+     */
+    public Optional&lt;Nota&gt; obtenerNotaPorId(Long id) {
+<span class="fc" id="L47">        return notaRepository.findById(id);</span>
+    }
+
+    /**
+     * Elimina una nota por su id.
+     *
+     * @param id el identificador de la nota a eliminar
+     */
+    public void eliminarNota(Long id) {
+<span class="fc" id="L56">        notaRepository.deleteById(id);</span>
+<span class="fc" id="L57">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
