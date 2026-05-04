@@ -1,28 +1,35 @@
 package com.notas.app.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.notas.app.dto.NotaRequest;
-import com.notas.app.entity.Nota;
-import com.notas.app.service.NotaService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.notas.app.dto.NotaRequest;
+import com.notas.app.entity.Nota;
+import com.notas.app.service.NotaService;
 
 @WebMvcTest(NotaController.class)
 @DisplayName("Pruebas unitarias - NotaController")
@@ -48,9 +55,7 @@ class NotaControllerTest {
         notaEjemplo.setFechaCreacion(LocalDateTime.of(2024, 1, 15, 10, 30));
     }
 
-    // ─────────────────────────────────────────────────────
-    //  POST /notas
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("POST /notas - debe crear una nota y retornar 201")
@@ -69,9 +74,7 @@ class NotaControllerTest {
         verify(notaService, times(1)).guardarNota(any(Nota.class));
     }
 
-    // ─────────────────────────────────────────────────────
-    //  GET /notas
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("GET /notas - debe retornar todas las notas con 200")
@@ -94,9 +97,6 @@ class NotaControllerTest {
         verify(notaService, times(1)).obtenerTodasLasNotas();
     }
 
-    // ─────────────────────────────────────────────────────
-    //  GET /notas/{id}
-    // ─────────────────────────────────────────────────────
 
     @Test
     @DisplayName("GET /notas/{id} - debe retornar la nota con 200 cuando existe")
@@ -122,9 +122,7 @@ class NotaControllerTest {
         verify(notaService, times(1)).obtenerNotaPorId(99L);
     }
 
-    // ─────────────────────────────────────────────────────
-    //  DELETE /notas/{id}
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("DELETE /notas/{id} - debe eliminar la nota y retornar 204 cuando existe")

@@ -1,23 +1,30 @@
 package com.notas.app.service;
 
-import com.notas.app.entity.Nota;
-import com.notas.app.repository.NotaRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.notas.app.entity.Nota;
+import com.notas.app.repository.NotaRepository;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Pruebas unitarias - NotaService")
@@ -40,9 +47,7 @@ class NotaServiceTest {
         notaEjemplo.setFechaCreacion(LocalDateTime.now());
     }
 
-    // ─────────────────────────────────────────────────────
-    //  guardarNota
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("Debe guardar una nota correctamente")
@@ -74,9 +79,7 @@ class NotaServiceTest {
         verify(notaRepository, times(1)).save(notaEjemplo);
     }
 
-    // ─────────────────────────────────────────────────────
-    //  obtenerTodasLasNotas
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("Debe retornar todas las notas guardadas")
@@ -117,9 +120,7 @@ class NotaServiceTest {
         verify(notaRepository, times(1)).findAll();
     }
 
-    // ─────────────────────────────────────────────────────
-    //  obtenerNotaPorId
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("Debe retornar la nota cuando existe el id")
@@ -151,9 +152,7 @@ class NotaServiceTest {
         verify(notaRepository, times(1)).findById(99L);
     }
 
-    // ─────────────────────────────────────────────────────
-    //  eliminarNota
-    // ─────────────────────────────────────────────────────
+
 
     @Test
     @DisplayName("Debe eliminar la nota correctamente")
