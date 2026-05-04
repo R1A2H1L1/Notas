@@ -25,7 +25,6 @@ public class Nota {
         this.fechaCreacion = LocalDateTime.now();
     }
 
-    // Constructores
     public Nota() {}
 
     public Nota(String titulo, String contenido) {
@@ -33,46 +32,15 @@ public class Nota {
         this.contenido = contenido;
     }
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getContenido() { return contenido; }
+    public void setContenido(String contenido) { this.contenido = contenido; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    @Override
-    public String toString() {
-        return "Nota{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", contenido='" + contenido + '\'' +
-                ", fechaCreacion=" + fechaCreacion +
-                '}';
-    }
+    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
+    public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
 }

@@ -4,7 +4,8 @@
       "Bash(mvn verify *)",
       "Bash(java *)",
       "Bash(mvn test *)",
-      "Bash(powershell -Command \"Get-Content target\\\\site\\\\jacoco\\\\index.html | Select-String -Pattern 'Total|pc cov|footer|td'\")"
+      "Bash(powershell -Command \"Get-Content target\\\\site\\\\jacoco\\\\index.html | Select-String -Pattern 'Total|pc cov|footer|td'\")",
+      "Bash(mvn clean *)"
     ]
   }
 }

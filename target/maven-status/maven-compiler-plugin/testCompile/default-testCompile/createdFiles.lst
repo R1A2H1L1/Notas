@@ -1,1 +1,4 @@
+com\notas\app\ApplicationTest.class
+com\notas\app\entity\NotaTest.class
+com\notas\app\controller\NotaControllerTest.class
 com\notas\app\service\NotaServiceTest.class

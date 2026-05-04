@@ -65,19 +65,4 @@ class NotaTest {
         assertEquals(fecha, nota.getFechaCreacion());
     }
 
-    @Test
-    @DisplayName("toString debe contener los valores de los campos de la nota")
-    void toString_debeContenerLosCamposDeLaNota() {
-        Nota nota = new Nota();
-        nota.setId(1L);
-        nota.setTitulo("Nota de toString");
-        nota.setContenido("Contenido visible");
-        nota.setFechaCreacion(LocalDateTime.of(2024, 3, 10, 8, 0));
-
-        String resultado = nota.toString();
-
-        assertTrue(resultado.contains("1"));
-        assertTrue(resultado.contains("Nota de toString"));
-        assertTrue(resultado.contains("Contenido visible"));
-    }
 }

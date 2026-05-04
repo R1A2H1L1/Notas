@@ -2,7 +2,6 @@
 
 import com.notas.app.entity.Nota;
 import com.notas.app.repository.NotaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,47 +12,24 @@ public class NotaService {
 
     private final NotaRepository notaRepository;
 
-    @Autowired
-<span class="fc" id="L17">    public NotaService(NotaRepository notaRepository) {</span>
-<span class="fc" id="L18">        this.notaRepository = notaRepository;</span>
-<span class="fc" id="L19">    }</span>
+<span class="fc" id="L15">    public NotaService(NotaRepository notaRepository) {</span>
+<span class="fc" id="L16">        this.notaRepository = notaRepository;</span>
+<span class="fc" id="L17">    }</span>
 
-    /**
-     * Guarda una nueva nota en la base de datos.
-     *
-     * @param nota la nota a guardar
-     * @return la nota guardada con su id asignado
-     */
     public Nota guardarNota(Nota nota) {
-<span class="fc" id="L28">        return notaRepository.save(nota);</span>
+<span class="fc" id="L20">        return notaRepository.save(nota);</span>
     }
 
-    /**
-     * Obtiene todas las notas almacenadas.
-     *
-     * @return lista de todas las notas
-     */
     public List&lt;Nota&gt; obtenerTodasLasNotas() {
-<span class="fc" id="L37">        return notaRepository.findAll();</span>
+<span class="fc" id="L24">        return notaRepository.findAll();</span>
     }
 
-    /**
-     * Obtiene una nota por su id.
-     *
-     * @param id el identificador de la nota
-     * @return un Optional con la nota si existe, vacío si no
-     */
     public Optional&lt;Nota&gt; obtenerNotaPorId(Long id) {
-<span class="fc" id="L47">        return notaRepository.findById(id);</span>
+<span class="fc" id="L28">        return notaRepository.findById(id);</span>
     }
 
-    /**
-     * Elimina una nota por su id.
-     *
-     * @param id el identificador de la nota a eliminar
-     */
     public void eliminarNota(Long id) {
-<span class="fc" id="L56">        notaRepository.deleteById(id);</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L32">        notaRepository.deleteById(id);</span>
+<span class="fc" id="L33">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

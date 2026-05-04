@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NotaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">notas-app</a> &gt; <a href="index.source.html" class="el_package">com.notas.app.controller</a> &gt; <span class="el_source">NotaController.java</span></div><h1>NotaController.java</h1><pre class="source lang-java linenums">package com.notas.app.controller;
 
+import com.notas.app.dto.NotaRequest;
 import com.notas.app.entity.Nota;
 import com.notas.app.service.NotaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(&quot;/notas&quot;)
@@ -17,50 +16,36 @@ public class NotaController {
 
     private final NotaService notaService;
 
-    @Autowired
-<span class="fc" id="L21">    public NotaController(NotaService notaService) {</span>
-<span class="fc" id="L22">        this.notaService = notaService;</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L19">    public NotaController(NotaService notaService) {</span>
+<span class="fc" id="L20">        this.notaService = notaService;</span>
+<span class="fc" id="L21">    }</span>
 
-    /**
-     * POST /notas → Crear una nueva nota
-     */
     @PostMapping
-    public ResponseEntity&lt;Nota&gt; crearNota(@RequestBody Nota nota) {
-<span class="fc" id="L30">        Nota notaGuardada = notaService.guardarNota(nota);</span>
-<span class="fc" id="L31">        return ResponseEntity.status(HttpStatus.CREATED).body(notaGuardada);</span>
+    public ResponseEntity&lt;Nota&gt; crearNota(@RequestBody NotaRequest notaRequest) {
+<span class="fc" id="L25">        Nota nota = new Nota(notaRequest.titulo(), notaRequest.contenido());</span>
+<span class="fc" id="L26">        return ResponseEntity.status(HttpStatus.CREATED).body(notaService.guardarNota(nota));</span>
     }
 
-    /**
-     * GET /notas → Obtener todas las notas
-     */
     @GetMapping
     public ResponseEntity&lt;List&lt;Nota&gt;&gt; obtenerTodasLasNotas() {
-<span class="fc" id="L39">        List&lt;Nota&gt; notas = notaService.obtenerTodasLasNotas();</span>
-<span class="fc" id="L40">        return ResponseEntity.ok(notas);</span>
+<span class="fc" id="L31">        return ResponseEntity.ok(notaService.obtenerTodasLasNotas());</span>
     }
 
-    /**
-     * GET /notas/{id} → Obtener una nota por id
-     */
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Nota&gt; obtenerNotaPorId(@PathVariable Long id) {
-<span class="fc" id="L48">        Optional&lt;Nota&gt; nota = notaService.obtenerNotaPorId(id);</span>
-<span class="fc" id="L49">        return nota.map(ResponseEntity::ok)</span>
-<span class="fc" id="L50">                   .orElse(ResponseEntity.notFound().build());</span>
+<span class="fc" id="L36">        return notaService.obtenerNotaPorId(id)</span>
+<span class="fc" id="L37">                .map(ResponseEntity::ok)</span>
+<span class="fc" id="L38">                .orElse(ResponseEntity.notFound().build());</span>
     }
 
-    /**
-     * DELETE /notas/{id} → Eliminar una nota
-     */
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; eliminarNota(@PathVariable Long id) {
-<span class="fc" id="L58">        Optional&lt;Nota&gt; nota = notaService.obtenerNotaPorId(id);</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (nota.isEmpty()) {</span>
-<span class="fc" id="L60">            return ResponseEntity.notFound().build();</span>
-        }
-<span class="fc" id="L62">        notaService.eliminarNota(id);</span>
-<span class="fc" id="L63">        return ResponseEntity.noContent().build();</span>
+<span class="fc" id="L43">        return notaService.obtenerNotaPorId(id)</span>
+<span class="fc" id="L44">                .&lt;ResponseEntity&lt;Void&gt;&gt;map(nota -&gt; {</span>
+<span class="fc" id="L45">                    notaService.eliminarNota(id);</span>
+<span class="fc" id="L46">                    return ResponseEntity.noContent().build();</span>
+                })
+<span class="fc" id="L48">                .orElseGet(() -&gt; ResponseEntity.notFound().build());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
